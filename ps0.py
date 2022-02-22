@@ -1,20 +1,16 @@
 # Problem Set 0 - Introduction to Computer Science and Programming in Python
 # produce number 'x' raised to the power of number 'y'
+# produce log (base 2) of 'x'
 
-# receive inputs
+import numpy as np
+
 x = input('Enter number x:')
 y = input('Enter number y:')
 
-# calculating
-pwr=int(x)**int(y)
+power = int(x)**int(y)
 
-# returning result
-print('X**y = ' + str(pwr))
+print('X**y = ' + str(power))
 
-# produce log (base 2) of 'x'
+log = np.log2(int(x))
 
-# importing numpy library to use log function
-import numpy as np
-
-# returning log (base 2) of 'x'
-print ('log(x) = ' + str(np.log2(int(x))))
+print ('log(x) = ' + str(log))
