@@ -4,7 +4,7 @@
 
 MONTHS_IN_A_YEAR = 12
 
-annual_salary = float(input("Enter your annual salary: "))
+annual_salary = float(input("Enter your starting annual salary: "))
 portion_saved = float(input("Enter the percent of your salary to save, as a decimal: "))
 total_cost = float(input("Enter the cost of your dream house: "))
 semi_annual_raise = float(input("Enter the semi-annual raise, as a decimal: "))
