@@ -12,5 +12,8 @@ down_payment_portion = 0.25
 total_cost = 1000000
 months = 36
 
-#print("Best savings rate: " + str(portion_saved))
-#print("Steps in bisection search: " + str(steps))
+portion_saved = 0.5
+steps = 0
+
+print("Best savings rate: " + str(portion_saved))
+print("Steps in bisection search: " + str(steps))
