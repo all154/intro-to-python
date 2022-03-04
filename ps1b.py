@@ -1,4 +1,6 @@
 # House Hunting Part B: Saving, with a raise
+# produce how long it will take to save enough money for down payment 
+# considering a raise every 6 months
 
 MONTHS_IN_A_YEAR = 12
 
