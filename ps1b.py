@@ -1,5 +1,4 @@
 # House Hunting Part B: Saving, with a raise
-# !!!
 
 MONTHS_IN_A_YEAR = 12
 
