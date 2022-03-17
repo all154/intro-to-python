@@ -1,6 +1,5 @@
 # House Hunting Part C: Finding the right amount to save away
 # produce the portion of the salary that should be saved
-# !!!
 
 MONTHS_IN_A_YEAR = 12
 
