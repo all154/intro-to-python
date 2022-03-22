@@ -124,7 +124,6 @@ def get_available_letters(letters_guessed):
     return available_letters
     
 def test_get_available_letters():
-  #assert get_available_letters([]) == 'abcdefghijklmnopqrstuvwxyz'
   assert get_available_letters(['e', 'i', 'k', 'p', 'r', 's']) == 'abcdfghjlmnoqtuvwxyz'
 
 def hangman(secret_word):
