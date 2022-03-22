@@ -1,6 +1,6 @@
 # Problem Set 2, hangman.py
-# Name: 
-# Collaborators:
+# Name: Aloisio Valério Jr.
+# Collaborators: None
 # Time spent:
 
 # Hangman Game
@@ -60,10 +60,23 @@ def is_word_guessed(secret_word, letters_guessed):
     returns: boolean, True if all the letters of secret_word are in letters_guessed;
       False otherwise
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    letters_found = 0
+
+    for char in secret_word:
+      for letter in letters_guessed:
+        if char == letter:
+          letters_found += 1
+          break
+    
+    if letters_found == len(secret_word):
+      return True
+    else:
+      return False
 
 
+def test_is_word_guessed():
+  assert is_word_guessed('apple',['e','i','k','p','r','s']) == False, 'Should be false'
+  assert is_word_guessed('apple',['e','a','l','p','r','s']) == True, 'Should be true'
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
@@ -72,10 +85,23 @@ def get_guessed_word(secret_word, letters_guessed):
     returns: string, comprised of letters, underscores (_), and spaces that represents
       which letters in secret_word have been guessed so far.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    guessed_word = ''
+    
+    for char in secret_word:
+      for letter in letters_guessed:
+        if char == letter:
+          guessed_word += letter
+          break
 
+        if letter == letters_guessed[len(letters_guessed)-1]:
+          guessed_word += '_ '
 
+    return guessed_word
+
+def test_get_guessed_word():
+  assert get_guessed_word('bird',['b','i','k','d','r','s']) == 'bird', "Should be 'bird'"
+  assert get_guessed_word('apple',['e','i','k','p','r','s']) == '_ pp_ e', "Should be '_ pp_ e'"
+  assert get_guessed_word('bird',['e','i','k','p','r','s']) == '_ ir_ ', "Should be '_ ir_ '"
 
 def get_available_letters(letters_guessed):
     '''
@@ -203,6 +229,10 @@ if __name__ == "__main__":
     
     secret_word = choose_word(wordlist)
     hangman(secret_word)
+
+    test_is_word_guessed()
+    test_get_guessed_word()
+    print("Everything passed")
 
 ###############
     
