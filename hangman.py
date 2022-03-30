@@ -167,6 +167,7 @@ def is_valid_letter(guess):
   returns: boolean, True if letter is valid
       False otherwise
   '''
+  # TODO
   return True
 
 def test_is_valid_letter():
