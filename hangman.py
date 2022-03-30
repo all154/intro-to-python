@@ -126,6 +126,54 @@ def get_available_letters(letters_guessed):
 def test_get_available_letters():
   assert get_available_letters(['e', 'i', 'k', 'p', 'r', 's']) == 'abcdfghjlmnoqtuvwxyz'
 
+def is_guess_in_word(guess, secret_word):
+  '''
+  guess: string, letter guessed by user
+  secret_word: string, the secret word to guess
+  returns: boolean, True if letter is found in secret_word
+      False otherwise
+  '''
+  for char in secret_word:
+    if char == guess:
+      return True
+
+  return False
+
+def test_is_guess_in_word():
+  assert is_guess_in_word('e', 'apple') == True
+  assert is_guess_in_word('m', 'apple') == False
+
+def was_already_guessed(guess, letters_guessed):
+  '''
+  guess: string, letter guessed by user
+  letters_guessed: list (of letters), which letters have been guessed so far
+  returns: boolean, True if letter is found in letters_guessed
+      False otherwise
+  '''
+  for letter in letters_guessed:
+    if guess == letter:
+      return True
+
+  return False
+
+def test_was_already_guessed():
+  assert is_guess_in_word('m', []) == False
+  assert is_guess_in_word('e', ['a','e','b']) == True
+  assert is_guess_in_word('m', ['a','e','b']) == False
+
+def is_valid_letter(guess):
+  '''
+  guess: string, letter guessed by user
+  returns: boolean, True if letter is valid
+      False otherwise
+  '''
+  return True
+
+def test_is_valid_letter():
+  assert is_valid_letter('n') == True
+  assert is_valid_letter('$') == False
+  assert is_valid_letter('5') == False
+
 def hangman(secret_word):
     '''
     secret_word: string, the secret word to guess.
@@ -151,8 +199,50 @@ def hangman(secret_word):
     
     Follows the other limitations detailed in the problem write-up.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    warnings = 3
+    guesses = 6
+    letters_guessed = []
+    guessed_word = get_guessed_word(secret_word, letters_guessed)
+    
+    print("Welcome to the game Hangman!")
+    print("I am thinking of a word that is " + str(len(secret_word)) + " letters long.")
+    print("You have " + str(warnings) + " warnings left.")
+    print("-------------")
+
+    while(guesses > 0):
+      print("You have " + str(guesses) + " guesses left.")
+      print("Available letters: " + get_available_letters(letters_guessed))
+      
+      guess = input("Please, guess a letter:")
+
+      if (is_valid_letter(guess)):
+        if (was_already_guessed(guess, letters_guessed)):
+          if (warnings > 0):
+            warnings -= 1
+            print("Oops! You've already guessed that letter. You have " + str(warnings) + " warnings left:" + guessed_word)
+          else:
+            guesses -= 1
+            print("Oops! You've already guessed that letter. You have no warnings left so you lose one guess:" + guessed_word)
+        else:
+          letters_guessed.append(guess)
+          guessed_word = get_guessed_word(secret_word, letters_guessed)
+
+          if (is_guess_in_word(guess, secret_word)):
+            print("Good guess: " + guessed_word)
+          else:
+            print("Oops! That letter is not in my word: " + guessed_word)
+            guesses -= 1
+      else:
+        if (warnings > 0):
+          warnings -= 1
+          print("Oops! That is not a valid letter. You have " + str(warnings) + " warnings left:" + guessed_word)
+        else:
+          guesses -= 1
+          print("Oops! That is not a valid letter. You have no warnings left so you lose one guess:" + guessed_word)
+        
+      
+      print("-------------")
+
 
 
 
@@ -239,13 +329,17 @@ if __name__ == "__main__":
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
     
-    secret_word = choose_word(wordlist)
-    hangman(secret_word)
-
     test_is_word_guessed()
     test_get_guessed_word()
     test_get_available_letters()
+    test_is_guess_in_word()
+    test_was_already_guessed()
+    test_is_valid_letter()
     print("Everything passed")
+
+    secret_word = choose_word(wordlist)
+    hangman(secret_word)
+
 
 ###############
     
