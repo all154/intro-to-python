@@ -114,6 +114,9 @@ def get_available_letters(letters_guessed):
     available_letters = ''
     alphabet = string.ascii_lowercase
 
+    if (len(letters_guessed) == 0):
+      return alphabet
+
     for char in alphabet:
       for letter in letters_guessed:
         if char == letter:
@@ -124,6 +127,7 @@ def get_available_letters(letters_guessed):
     return available_letters
     
 def test_get_available_letters():
+  assert get_available_letters([]) == 'abcdefghijklmnopqrstuvwxyz'
   assert get_available_letters(['e', 'i', 'k', 'p', 'r', 's']) == 'abcdfghjlmnoqtuvwxyz'
 
 def is_guess_in_word(guess, secret_word):
@@ -167,13 +171,39 @@ def is_valid_letter(guess):
   returns: boolean, True if letter is valid
       False otherwise
   '''
-  # TODO
-  return True
+  import string
+
+  alphabet = string.ascii_lowercase
+
+  for char in alphabet:
+    if guess == char:
+      return True
+  
+  return False
 
 def test_is_valid_letter():
   assert is_valid_letter('n') == True
   assert is_valid_letter('$') == False
   assert is_valid_letter('5') == False
+
+def unique_letters(secret_word):
+  '''
+  secret_word: string, the secret word to guess
+  returns: integer, number of unique letters in given word
+  '''
+  unique_letters = []
+
+  for char in secret_word:
+    if (not was_already_guessed(char, unique_letters)):
+      unique_letters.append(char)
+
+  return len(unique_letters)
+
+def test_unique_letters():
+  assert unique_letters('') == 0
+  assert unique_letters('apple') == 4
+  assert unique_letters('general') == 6
+  assert unique_letters('punctures') == 8
 
 def hangman(secret_word):
     '''
@@ -201,7 +231,7 @@ def hangman(secret_word):
     Follows the other limitations detailed in the problem write-up.
     '''
     warnings = 3
-    guesses = 6
+    guesses_remaining = 6
     letters_guessed = []
     guessed_word = get_guessed_word(secret_word, letters_guessed)
     
@@ -210,8 +240,16 @@ def hangman(secret_word):
     print("You have " + str(warnings) + " warnings left.")
     print("-------------")
 
-    while(guesses > 0):
-      print("You have " + str(guesses) + " guesses left.")
+    while(guesses_remaining > 0):
+      if(is_word_guessed(secret_word, letters_guessed)):
+        total_score = guesses_remaining * unique_letters(secret_word)
+
+        print("Congratulations, you won!")
+        print("Your total score for this game is: " + str(total_score))
+
+        break
+        
+      print("You have " + str(guesses_remaining) + " guesses left.")
       print("Available letters: " + get_available_letters(letters_guessed))
       
       guess = input("Please, guess a letter:")
@@ -222,7 +260,7 @@ def hangman(secret_word):
             warnings -= 1
             print("Oops! You've already guessed that letter. You have " + str(warnings) + " warnings left:" + guessed_word)
           else:
-            guesses -= 1
+            guesses_remaining -= 1
             print("Oops! You've already guessed that letter. You have no warnings left so you lose one guess:" + guessed_word)
         else:
           letters_guessed.append(guess)
@@ -232,17 +270,20 @@ def hangman(secret_word):
             print("Good guess: " + guessed_word)
           else:
             print("Oops! That letter is not in my word: " + guessed_word)
-            guesses -= 1
+            guesses_remaining -= 1
       else:
         if (warnings > 0):
           warnings -= 1
           print("Oops! That is not a valid letter. You have " + str(warnings) + " warnings left:" + guessed_word)
         else:
-          guesses -= 1
+          guesses_remaining -= 1
           print("Oops! That is not a valid letter. You have no warnings left so you lose one guess:" + guessed_word)
         
       
       print("-------------")
+
+      if (guesses_remaining == 0):
+        print("Sorry, you ran out of guesses. The word was " + secret_word)
 
 
 
@@ -336,7 +377,8 @@ if __name__ == "__main__":
     test_is_guess_in_word()
     test_was_already_guessed()
     test_is_valid_letter()
-    print("Everything passed")
+    test_unique_letters()
+    print("All tests passed!")
 
     secret_word = choose_word(wordlist)
     hangman(secret_word)
