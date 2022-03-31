@@ -186,18 +186,21 @@ def test_is_valid_letter():
   assert is_valid_letter('$') == False
   assert is_valid_letter('5') == False
 
+def list_of_unique_letters(word):
+  unique_letters = []
+
+  for char in word:
+    if (not was_already_guessed(char, unique_letters)):
+      unique_letters.append(char)
+  
+  return unique_letters
+
 def unique_letters(secret_word):
   '''
   secret_word: string, the secret word to guess
   returns: integer, number of unique letters in given word
   '''
-  unique_letters = []
-
-  for char in secret_word:
-    if (not was_already_guessed(char, unique_letters)):
-      unique_letters.append(char)
-
-  return len(unique_letters)
+  return len(list_of_unique_letters(secret_word))
 
 def test_unique_letters():
   assert unique_letters('') == 0
@@ -307,11 +310,29 @@ def match_with_gaps(my_word, other_word):
         _ , and my_word and other_word are of the same length;
         False otherwise: 
     '''
-    # TODO
+    my_word_without_spaces = my_word.replace(" ","")
+    missing_letters = []
+
+    if (len(my_word_without_spaces) != len(other_word)):
+      return False
+    else:
+      for i in range(len(other_word)):
+        if (my_word_without_spaces[i] != other_word[i]):
+          if (my_word_without_spaces[i] == "_"):
+            missing_letters.append(other_word[i])
+            continue
+          else:
+            return False
+    
+    # if missing letter was already used, word cannot match
+    for char in list_of_unique_letters(my_word):
+      for letter in missing_letters:
+        if char == letter:
+          return False
+
     return True
 
 def test_match_with_gaps():
-  assert match_with_gaps('', 'apple') == False
   assert match_with_gaps('te_ t', 'tact') == False
   assert match_with_gaps("a_ _ le", "banana") == False
   assert match_with_gaps("a_ _ le", "apple") == True
@@ -330,6 +351,10 @@ def show_possible_matches(my_word):
     # FILL IN YOUR CODE HERE AND DELETE "pass"
     pass
 
+def test_show_possible_matches():
+  assert show_possible_matches("t_ _ t") == "tact tart taut teat tent test text that tilt tint toot tort tout trot tuft twit"
+  assert show_possible_matches("abbbb_ ") == "No matches found"
+  assert show_possible_matches("a_ pl_ ") == "ample amply"
 
 def hangman_with_hints(secret_word):
     '''
@@ -383,6 +408,7 @@ if __name__ == "__main__":
     test_is_valid_letter()
     test_unique_letters()
     test_match_with_gaps()
+    test_show_possible_matches()
     print("All tests passed!")
 
     #secret_word = choose_word(wordlist)
