@@ -307,10 +307,15 @@ def match_with_gaps(my_word, other_word):
         _ , and my_word and other_word are of the same length;
         False otherwise: 
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    # TODO
+    return True
 
-
+def test_match_with_gaps():
+  assert match_with_gaps('', 'apple') == False
+  assert match_with_gaps('te_ t', 'tact') == False
+  assert match_with_gaps("a_ _ le", "banana") == False
+  assert match_with_gaps("a_ _ le", "apple") == True
+  assert match_with_gaps("a_ ple", "apple") == False 
 
 def show_possible_matches(my_word):
     '''
@@ -324,7 +329,6 @@ def show_possible_matches(my_word):
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
     pass
-
 
 
 def hangman_with_hints(secret_word):
@@ -378,10 +382,11 @@ if __name__ == "__main__":
     test_was_already_guessed()
     test_is_valid_letter()
     test_unique_letters()
+    test_match_with_gaps()
     print("All tests passed!")
 
-    secret_word = choose_word(wordlist)
-    hangman(secret_word)
+    #secret_word = choose_word(wordlist)
+    #hangman(secret_word)
 
 
 ###############
@@ -389,5 +394,5 @@ if __name__ == "__main__":
     # To test part 3 re-comment out the above lines and 
     # uncomment the following two lines. 
     
-    #secret_word = choose_word(wordlist)
-    #hangman_with_hints(secret_word)
+    secret_word = choose_word(wordlist)
+    hangman_with_hints(secret_word)
