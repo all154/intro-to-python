@@ -289,8 +289,6 @@ def hangman(secret_word):
         print("Sorry, you ran out of guesses. The word was " + secret_word)
 
 
-
-
 # When you've completed your hangman function, scroll down to the bottom
 # of the file and uncomment the first two lines to test
 #(hint: you might want to pick your own
@@ -348,13 +346,19 @@ def show_possible_matches(my_word):
              that has already been revealed.
 
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    possible_matches = 0
 
-def test_show_possible_matches():
-  assert show_possible_matches("t_ _ t") == "tact tart taut teat tent test text that tilt tint toot tort tout trot tuft twit"
-  assert show_possible_matches("abbbb_ ") == "No matches found"
-  assert show_possible_matches("a_ pl_ ") == "ample amply"
+    for word in wordlist:
+      if match_with_gaps(my_word, word):
+        print(word, end =" ")
+        possible_matches += 1
+    
+    if possible_matches == 0:
+      print("No matches found")
+      return
+    
+    print("")
+
 
 def hangman_with_hints(secret_word):
     '''
@@ -383,10 +387,78 @@ def hangman_with_hints(secret_word):
     
     Follows the other limitations detailed in the problem write-up.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    warnings = 3
+    guesses_remaining = 6
+    letters_guessed = []
+    guessed_word = get_guessed_word(secret_word, letters_guessed)
+    
+    print("-------------")
+    print("Welcome to the game Hangman!")
+    print("I am thinking of a word that is " + str(len(secret_word)) + " letters long.")
+    print("You have " + str(warnings) + " warnings left.")
+    print("-------------")
 
+    while guesses_remaining > 0:
+      if is_word_guessed(secret_word, letters_guessed):
+        total_score = guesses_remaining * unique_letters(secret_word)
 
+        print("Congratulations, you won!")
+        print("Your total score for this game is: " + str(total_score))
+
+        break
+        
+      print("You have " + str(guesses_remaining) + " guesses left.")
+      print("Available letters: " + get_available_letters(letters_guessed))
+      
+      guess = input("Please, guess a letter:")
+
+      if is_valid_letter(guess):
+        if was_already_guessed(guess, letters_guessed):
+          if warnings > 0:
+            warnings -= 1
+            print("Oops! You've already guessed that letter. You have " + str(warnings) + " warnings left:" + guessed_word)
+          else:
+            guesses_remaining -= 1
+            print("Oops! You've already guessed that letter. You have no warnings left so you lose one guess:" + guessed_word)
+        else:
+          letters_guessed.append(guess)
+          guessed_word = get_guessed_word(secret_word, letters_guessed)
+
+          if is_guess_in_word(guess, secret_word):
+            print("Good guess: " + guessed_word)
+          else:
+            print("Oops! That letter is not in my word: " + guessed_word)
+            guesses_remaining -= 1
+      elif guess == "*":
+        print("Possible word matches are:")
+        show_possible_matches(guessed_word)
+      else:
+        if warnings > 0:
+          warnings -= 1
+          print("Oops! That is not a valid letter. You have " + str(warnings) + " warnings left:" + guessed_word)
+        else:
+          guesses_remaining -= 1
+          print("Oops! That is not a valid letter. You have no warnings left so you lose one guess:" + guessed_word)
+        
+      
+      print("-------------")
+
+      if (guesses_remaining == 0):
+        print("Sorry, you ran out of guesses. The word was " + secret_word)
+
+def all_tests():
+  # Calls every test of every helper function used
+
+  print("Testing helper functions...")
+  test_is_word_guessed()
+  test_get_guessed_word()
+  test_get_available_letters()
+  test_is_guess_in_word()
+  test_was_already_guessed()
+  test_is_valid_letter()
+  test_unique_letters()
+  test_match_with_gaps()
+  print("   All tests passed!")
 
 # When you've completed your hangman_with_hint function, comment the two similar
 # lines above that were used to run the hangman function, and then uncomment
@@ -397,19 +469,10 @@ def hangman_with_hints(secret_word):
 if __name__ == "__main__":
     # pass
 
+    all_tests()
+
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
-    
-    test_is_word_guessed()
-    test_get_guessed_word()
-    test_get_available_letters()
-    test_is_guess_in_word()
-    test_was_already_guessed()
-    test_is_valid_letter()
-    test_unique_letters()
-    test_match_with_gaps()
-    test_show_possible_matches()
-    print("All tests passed!")
 
     #secret_word = choose_word(wordlist)
     #hangman(secret_word)
