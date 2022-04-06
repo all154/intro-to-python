@@ -91,10 +91,10 @@ def get_word_score(word, n):
     n: int >= 0
     returns: int >= 0
     """
+    lowercase_word = word.lower()
+    
     first_component = 0
     second_component = 7 * len(word) - 3 * (n - len(word))
-
-    lowercase_word = word.lower()
 
     for letter in lowercase_word:
         first_component += SCRABBLE_LETTER_VALUES[letter]
