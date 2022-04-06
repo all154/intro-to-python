@@ -3,7 +3,7 @@
 # The 6.0001 Word Game
 # Created by: Kevin Luu <luuk> and Jenna Wiens <jwiens>
 #
-# Name          : <your name>
+# Name          : Aloisio Valério Jr.
 # Collaborators : <your collaborators>
 # Time spent    : <total time>
 
@@ -91,8 +91,18 @@ def get_word_score(word, n):
     n: int >= 0
     returns: int >= 0
     """
+    first_component = 0
+    second_component = 7 * len(word) - 3 * (n - len(word))
+
+    lowercase_word = word.lower()
+
+    for letter in lowercase_word:
+        first_component += SCRABBLE_LETTER_VALUES[letter]
+
+    if second_component < 1:
+        second_component = 1
     
-    pass  # TO DO... Remove this line when you implement this function
+    return first_component * second_component
 
 #
 # Make sure you understand how this function works and what it does!
