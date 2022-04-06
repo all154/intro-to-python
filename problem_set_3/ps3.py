@@ -5,7 +5,7 @@
 #
 # Name          : Aloisio Valério Jr.
 # Collaborators : <your collaborators>
-# Time spent    : <total time>
+# Time spent    : 2h30
 
 import math
 import random
@@ -202,9 +202,17 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     returns: boolean
     """
+    used_letters = get_frequency_dict(word.lower())
 
-    pass  # TO DO... Remove this line when you implement this function
+    for letter in used_letters:
+        if hand.get(letter, 0) < used_letters[letter]:
+            return False
+    
+    for string in word_list:
+        if string == word.lower():
+            return True
 
+    return False
 #
 # Problem #5: Playing a hand
 #
