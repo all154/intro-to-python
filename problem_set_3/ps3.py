@@ -92,7 +92,7 @@ def get_word_score(word, n):
     returns: int >= 0
     """
     lowercase_word = word.lower()
-    
+
     first_component = 0
     second_component = 7 * len(word) - 3 * (n - len(word))
 
@@ -177,8 +177,16 @@ def update_hand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
+    used_letters = get_frequency_dict(word.lower())
+    new_hand = hand.copy()
 
-    pass  # TO DO... Remove this line when you implement this function
+    for letter in used_letters:
+        if new_hand.get(letter, 0) - used_letters[letter] < 0:
+            new_hand[letter] = 0
+        else:
+            new_hand[letter] = new_hand.get(letter, 0) - used_letters[letter]
+
+    return new_hand
 
 #
 # Problem #3: Test word validity
