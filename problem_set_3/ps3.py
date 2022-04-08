@@ -209,9 +209,16 @@ def is_valid_word(word, hand, word_list):
         if hand.get(letter, 0) < used_letters[letter]:
             return False
     
-    for string in word_list:
-        if string == word.lower():
-            return True
+    if '*' in word:
+        for letter in VOWELS:
+            new_word = word.replace("*",letter)
+            for string in word_list:
+                if string == new_word.lower():
+                    return True
+    else:
+        for string in word_list:
+            if string == word.lower():
+                return True
 
     return False
 #
