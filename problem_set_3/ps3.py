@@ -365,9 +365,34 @@ def play_game(word_list):
 
     word_list: list of lowercase strings
     """
+    total_score = 0
+    number_of_hands = int(input('Enter total number of hands: '))
     
-    print("play_game not implemented.") # TO DO... Remove this line when you implement this function
+    for i in range(number_of_hands):
+        hand = deal_hand(HAND_SIZE)
+        print("Current hand:", end=' ')
+        display_hand(hand)
+        
+        print("")
+        answer = input('Would you like to substitute a letter? (y/n) ')
+
+        if answer == 'y':
+            letter_to_replace = input('Which letter would you like to replace: ')
+            hand = substitute_hand(hand, letter_to_replace)
+                
+        while True:
+            print("")
+            hand_score = play_hand(hand, word_list)
+            
+            print('----------')
+            replay_hand = input('Would you like to replay the hand? (y/n) ')
+
+            if replay_hand == 'n':
+                break
+        
+        total_score += hand_score
     
+    print('Total score over all hands: ' + str(total_score) + " points.")
 
 
 #
