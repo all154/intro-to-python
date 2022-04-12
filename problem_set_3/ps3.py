@@ -5,7 +5,7 @@
 #
 # Name          : Aloisio Valério Jr.
 # Collaborators : <your collaborators>
-# Time spent    : 2h30
+# Time spent    : 4h
 
 import math
 import random
