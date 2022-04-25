@@ -1,7 +1,7 @@
 # Problem Set 4B
-# Name: <your name here>
+# Name: Aloisio Valério Jr.
 # Collaborators:
-# Time Spent: x:xx
+# Time Spent: Started 10:50
 
 import string
 
@@ -70,7 +70,8 @@ class Message(object):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        self.message_text = text
+        self.valid_words = load_words(WORDLIST_FILENAME)
 
     def get_message_text(self):
         '''
