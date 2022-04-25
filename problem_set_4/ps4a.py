@@ -1,7 +1,7 @@
 # Problem Set 4A
 # Name: Aloisio Valério Jr.
 # Collaborators:
-# Time Spent: x:xx started 9:30
+# Time Spent: 1h
 
 def get_permutations(sequence):
     '''
