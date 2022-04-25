@@ -181,6 +181,17 @@ def test_is_valid_word(word_list):
         print("\tExpected False, but got True for word: '" + word + "' and hand:", hand)
         print("\t(If this is the only failure, make sure is_valid_word() isn't mutating its inputs)")        
         
+        failure = True 
+
+    # test 7
+    # added manually to include word not in word_list
+    word = "Evn"
+
+    if  is_valid_word(word, hand, word_list):
+        print("FAILURE: test_is_valid_word()")
+        print("\tExpected False, but got True for word: '" + word + "' and hand:", hand)
+        print("\t(If this is the only failure, make sure is_valid_word() isn't allowing made up words)")        
+        
         failure = True        
 
     if not failure:
