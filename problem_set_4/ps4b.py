@@ -1,7 +1,7 @@
 # Problem Set 4B
 # Name: Aloisio Valério Jr.
 # Collaborators:
-# Time Spent: Started 10:50
+# Time Spent: 1h
 
 import string
 
