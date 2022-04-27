@@ -1,7 +1,7 @@
 # Problem Set 4B
 # Name: Aloisio Valério Jr.
 # Collaborators:
-# Time Spent: 1h
+# Time Spent: 1h (restarted 11:05)
 
 import string
 
@@ -163,7 +163,10 @@ class PlaintextMessage(Message):
             self.message_text_encrypted (string, created using shift)
 
         '''
-        pass #delete this line and replace with your code here
+        Message.__init__(self, text)
+        self.shift = shift
+        self.encryption_dict = Message.build_shift_dict(self, shift)
+        self.message_text_encrypted = Message.apply_shift(self, shift)
 
     def get_shift(self):
         '''
