@@ -190,7 +190,7 @@ class PlaintextMessage(Message):
         
         Returns: self.message_text_encrypted
         '''
-        pass #delete this line and replace with your code here
+        return self.message_text_encrypted
 
     def change_shift(self, shift):
         '''
@@ -202,7 +202,7 @@ class PlaintextMessage(Message):
 
         Returns: nothing
         '''
-        pass #delete this line and replace with your code here
+        PlaintextMessage.__init__(self, self.message_text, shift)
 
 
 class CiphertextMessage(Message):
@@ -272,11 +272,29 @@ if __name__ == '__main__':
     print('------------')
 
     test2 = PlaintextMessage("Trying",5)
-    print(test2.get_shift())
+    print('Expected Output: Ywdnsl')
+    print('Actual Output:', test2.get_shift())
+
+    print('------------')
+    '''
+    print(test2.get_encryption_dict())
 
     print('------------')
 
-    print(test2.get_encryption_dict())
+    print(test2.get_message_text_encrypted())
+
+    print('------------')
+    '''
+    print('Expected Output: Shift was 5')
+    print("Actual Output: Shift was " + str(test2.get_shift()))
+
+    test2.change_shift(2)
+
+    print('Expected Output: New shift is 2')
+    print("Actual Output: New shift is " + str(test2.get_shift()))
+
+    print('Expected Output: Vtakpi')
+    print("Actual Output: " + test2.get_message_text_encrypted())
 
     #TODO: best shift value and unencrypted story 
 
