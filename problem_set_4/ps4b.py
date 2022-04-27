@@ -182,7 +182,7 @@ class PlaintextMessage(Message):
         
         Returns: a COPY of self.encryption_dict
         '''
-        pass #delete this line and replace with your code here
+        return self.encryption_dict.copy()
 
     def get_message_text_encrypted(self):
         '''
@@ -273,6 +273,10 @@ if __name__ == '__main__':
 
     test2 = PlaintextMessage("Trying",5)
     print(test2.get_shift())
+
+    print('------------')
+
+    print(test2.get_encryption_dict())
 
     #TODO: best shift value and unencrypted story 
 
