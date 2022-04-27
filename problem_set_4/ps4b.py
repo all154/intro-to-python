@@ -174,7 +174,7 @@ class PlaintextMessage(Message):
         
         Returns: self.shift
         '''
-        pass #delete this line and replace with your code here
+        pass
 
     def get_encryption_dict(self):
         '''
@@ -251,9 +251,28 @@ if __name__ == '__main__':
     #TODO: WRITE YOUR TEST CASES HERE
 
     test = Message("Hello")
+    
+    print('Expected Output: Hello')
+    print('Actual Output:', test.get_message_text())
+
+    print('------------')
+    ''''
+    print(test.get_valid_words()
+
+    print('------------')
+
+    print(test.build_shift_dict(1))
+
+    print('------------')
+    '''
     shift = test.apply_shift(1)
     print('Expected Output: Ifmmp')
     print('Actual Output:', shift)
+
+    print('------------')
+
+    test2 = PlaintextMessage("Trying",5)
+    print(test2.get_shift())
 
     #TODO: best shift value and unencrypted story 
 
