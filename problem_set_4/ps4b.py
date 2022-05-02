@@ -235,7 +235,23 @@ class CiphertextMessage(Message):
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
         '''
-        pass #delete this line and replace with your code here
+        number_of_valid_words = 0
+        original_shift_value = 0
+
+        for i in range(1,27):
+            message = self.apply_shift(i)
+            split_message = message.split()
+            counter = 0
+
+            for word in split_message:
+                if is_word(self.valid_words, word):
+                    counter += 1
+            
+            if counter > number_of_valid_words:
+                number_of_valid_words = counter
+                original_shift_value = 26 - i
+        
+        return (original_shift_value, self.apply_shift(26 - original_shift_value))
 
 if __name__ == '__main__':
 
@@ -288,14 +304,27 @@ if __name__ == '__main__':
     '''
     print('Expected Output: Shift was 5')
     print("Actual Output: Shift was " + str(test2.get_shift()))
+    print('------------')
 
     test2.change_shift(2)
 
     print('Expected Output: New shift is 2')
     print("Actual Output: New shift is " + str(test2.get_shift()))
+    print('------------')
 
     print('Expected Output: Vtakpi')
     print("Actual Output: " + test2.get_message_text_encrypted())
+    print('------------')
+
+    ciphertext = CiphertextMessage('jgnnq')
+    print('Expected Output:', (2, 'hello'))
+    print('Actual Output:', ciphertext.decrypt_message())
+    print('------------')
+
+    ciphertext = CiphertextMessage('Qh eqwtug kv ku ytqpi!')
+    print('Expected Output:', (2, 'Of course it is wrong!'))
+    print('Actual Output:', ciphertext.decrypt_message())
+    print('------------')
 
     #TODO: best shift value and unencrypted story 
 
