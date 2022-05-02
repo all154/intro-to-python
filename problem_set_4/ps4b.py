@@ -265,8 +265,6 @@ if __name__ == '__main__':
 #    print('Expected Output:', (24, 'hello'))
 #    print('Actual Output:', ciphertext.decrypt_message())
 
-    #TODO: WRITE YOUR TEST CASES HERE
-
     test = Message("Hello")
     
     print('Expected Output: Hello')
@@ -326,6 +324,5 @@ if __name__ == '__main__':
     print('Actual Output:', ciphertext.decrypt_message())
     print('------------')
 
-    #TODO: best shift value and unencrypted story 
-
-    pass #delete this line and replace with your code here
+    encrypted_story = CiphertextMessage(get_story_string())
+    print('Actual Story:', encrypted_story.decrypt_message())
