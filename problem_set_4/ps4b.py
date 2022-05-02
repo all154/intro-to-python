@@ -1,7 +1,7 @@
 # Problem Set 4B
 # Name: Aloisio Valério Jr.
 # Collaborators:
-# Time Spent: 2h
+# Time Spent: 2h (started 14h30)
 
 import string
 
@@ -216,7 +216,8 @@ class CiphertextMessage(Message):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        self.message_text = text
+        self.valid_words = load_words(WORDLIST_FILENAME)
 
     def decrypt_message(self):
         '''
