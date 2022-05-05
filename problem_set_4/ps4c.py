@@ -109,8 +109,26 @@ class SubMessage(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
+        vowels_permutation_lower = vowels_permutation.lower()
+        vowels_permutation_upper = vowels_permutation.upper()
+
+        transpose_dict = {}
+
+        for char in vowels_permutation_lower:
+            for vowel in VOWELS_LOWER:
+                transpose_dict[vowel] = char
         
-        pass #delete this line and replace with your code here
+        for char in vowels_permutation_upper:
+            for vowel in VOWELS_UPPER:
+                transpose_dict[vowel] = char
+
+        for char in CONSONANTS_LOWER:
+            transpose_dict[char] = char
+
+        for char in CONSONANTS_UPPER:
+            transpose_dict[char] = char
+
+        return transpose_dict
     
     def apply_transpose(self, transpose_dict):
         '''
