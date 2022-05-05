@@ -1,7 +1,7 @@
 # Problem Set 4C
-# Name: <your name here>
+# Name: Aloisio Valério Jr.
 # Collaborators:
-# Time Spent: x:xx
+# Time Spent: 25 min
 
 import string
 from ps4a import get_permutations
@@ -70,7 +70,8 @@ class SubMessage(object):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        self.message_text = text
+        self.valid_words = load_words(WORDLIST_FILENAME)
     
     def get_message_text(self):
         '''
@@ -78,7 +79,7 @@ class SubMessage(object):
         
         Returns: self.message_text
         '''
-        pass #delete this line and replace with your code here
+        return self.message_text
 
     def get_valid_words(self):
         '''
@@ -87,7 +88,7 @@ class SubMessage(object):
         
         Returns: a COPY of self.valid_words
         '''
-        pass #delete this line and replace with your code here
+        return self.valid_words.copy()
                 
     def build_transpose_dict(self, vowels_permutation):
         '''
@@ -108,8 +109,22 @@ class SubMessage(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        
-        pass #delete this line and replace with your code here
+        vowels_permutation_lower = vowels_permutation.lower()
+        vowels_permutation_upper = vowels_permutation.upper()
+
+        transpose_dict = {}
+
+        for i in range(len(VOWELS_LOWER)):
+            transpose_dict[VOWELS_LOWER[i]] = vowels_permutation_lower[i]
+            transpose_dict[VOWELS_UPPER[i]] = vowels_permutation_upper[i]
+
+        for char in CONSONANTS_LOWER:
+            transpose_dict[char] = char
+
+        for char in CONSONANTS_UPPER:
+            transpose_dict[char] = char
+
+        return transpose_dict
     
     def apply_transpose(self, transpose_dict):
         '''
@@ -161,6 +176,7 @@ if __name__ == '__main__':
     message = SubMessage("Hello World!")
     permutation = "eaiuo"
     enc_dict = message.build_transpose_dict(permutation)
+    print(enc_dict)
     print("Original message:", message.get_message_text(), "Permutation:", permutation)
     print("Expected encryption:", "Hallu Wurld!")
     print("Actual encryption:", message.apply_transpose(enc_dict))
