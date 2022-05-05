@@ -114,13 +114,9 @@ class SubMessage(object):
 
         transpose_dict = {}
 
-        for char in vowels_permutation_lower:
-            for vowel in VOWELS_LOWER:
-                transpose_dict[vowel] = char
-        
-        for char in vowels_permutation_upper:
-            for vowel in VOWELS_UPPER:
-                transpose_dict[vowel] = char
+        for i in range(len(VOWELS_LOWER)):
+            transpose_dict[VOWELS_LOWER[i]] = vowels_permutation_lower[i]
+            transpose_dict[VOWELS_UPPER[i]] = vowels_permutation_upper[i]
 
         for char in CONSONANTS_LOWER:
             transpose_dict[char] = char
