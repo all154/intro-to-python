@@ -1,7 +1,7 @@
 # Problem Set 4C
 # Name: Aloisio Valério Jr.
 # Collaborators:
-# Time Spent: 50 min
+# Time Spent: 1h
 
 import string
 from ps4a import get_permutations
