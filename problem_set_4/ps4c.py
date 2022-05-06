@@ -208,5 +208,24 @@ if __name__ == '__main__':
     print("Actual encryption:", message.apply_transpose(enc_dict))
     enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
     print("Decrypted message:", enc_message.decrypt_message())
-     
-    #TODO: WRITE YOUR TEST CASES HERE
+    print('----------------')
+
+    message1 = SubMessage("Get it right this time.")
+    permutation1 = "uiaeo"
+    enc_dict1 = message.build_transpose_dict(permutation1)
+    print("Original message:", message1.get_message_text(), "Permutation:", permutation1)
+    print("Expected encryption:", "Git at raght thas tami.")
+    print("Actual encryption:", message1.apply_transpose(enc_dict1))
+    enc_message1 = EncryptedSubMessage(message1.apply_transpose(enc_dict1))
+    print("Decrypted message:", enc_message1.decrypt_message())
+    print('----------------')
+
+    message2 = SubMessage("And it will go all the way!")
+    permutation2 = "oueia"
+    enc_dict2 = message.build_transpose_dict(permutation2)
+    print("Original message:", message2.get_message_text(), "Permutation:", permutation2)
+    print("Expected encryption:", "Ond et well gi oll thu woy!")
+    print("Actual encryption:", message2.apply_transpose(enc_dict2))
+    enc_message2 = EncryptedSubMessage(message2.apply_transpose(enc_dict2))
+    print("Decrypted message:", enc_message2.decrypt_message())
+    print('----------------')
