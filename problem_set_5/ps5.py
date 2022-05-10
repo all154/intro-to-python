@@ -98,6 +98,9 @@ class PhraseTrigger(Trigger):
     def __init__(self, phrase):
         self.phrase = phrase
 
+    def is_phrase_in(self, text):
+        pass
+
 # Problem 3
 # TODO: TitleTrigger
 
