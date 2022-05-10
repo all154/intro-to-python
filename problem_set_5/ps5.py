@@ -71,6 +71,9 @@ class NewsStory(object):
 
     def get_description(self):
         return self.description
+    
+    def get_link(self):
+        return self.link
 
 #======================
 # Triggers
