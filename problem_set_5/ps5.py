@@ -66,6 +66,9 @@ class NewsStory(object):
     def get_guid(self):
         return self.guid
 
+    def get_title(self):
+        return self.title
+
 #======================
 # Triggers
 #======================
