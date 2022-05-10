@@ -54,7 +54,6 @@ def process(url):
 
 # Problem 1
 
-# TODO: NewsStory
 class NewsStory(object):
     def __init__( self, guid, title, description, link, pubdate):
         self.guid = guid
@@ -95,6 +94,9 @@ class Trigger(object):
 
 # Problem 2
 # TODO: PhraseTrigger
+class PhraseTrigger(Trigger):
+    def __init__(self, phrase):
+        self.phrase = phrase
 
 # Problem 3
 # TODO: TitleTrigger
