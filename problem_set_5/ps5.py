@@ -56,12 +56,15 @@ def process(url):
 
 # TODO: NewsStory
 class NewsStory(object):
-    def __init__(self, ​guid, title, description, link, pubdate):
+    def __init__( self, guid, title, description, link, pubdate):
         self.guid = guid
         self.title = title
         self.description = description
         self.link = link
         self.pubdate = pubdate
+    
+    def get_guid(self):
+        return self.guid
 
 #======================
 # Triggers
