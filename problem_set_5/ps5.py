@@ -99,7 +99,20 @@ class PhraseTrigger(Trigger):
         self.phrase = phrase
 
     def is_phrase_in(self, text):
-        pass
+        lowercase_text = text.lower()
+
+        for char in string.punctuation:
+            replaced_text = lowercase_text.replace(char, '')
+        
+        split_text = replaced_text.split(" ")
+        split_phrase = self.phrase.lower().split(" ")
+
+        for string in split_text:
+            if string == split_phrase[0]:
+                if split_text[split_text.index(string)+1] == split_phrase [1]:
+                    return true
+        
+        return false
 
 # Problem 3
 # TODO: TitleTrigger
