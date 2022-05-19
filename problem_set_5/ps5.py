@@ -110,12 +110,14 @@ class PhraseTrigger(Trigger):
         for string in split_text:
             if string == split_phrase[0]:
                 if split_text[split_text.index(string)+1] == split_phrase [1]:
-                    return true
+                    return True
         
-        return false
+        return False
 
 # Problem 3
-# TODO: TitleTrigger
+class TitleTrigger(PhraseTrigger):
+    def __init__(self, title):
+        self.title = title
 
 # Problem 4
 # TODO: DescriptionTrigger
