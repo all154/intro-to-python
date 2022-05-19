@@ -107,9 +107,9 @@ class PhraseTrigger(Trigger):
         split_text = replaced_text.split(" ")
         split_phrase = self.phrase.lower().split(" ")
 
-        for string in split_text:
-            if string == split_phrase[0]:
-                if split_text[split_text.index(string)+1] == split_phrase [1]:
+        for word in split_text:
+            if word == split_phrase[0]:
+                if split_text[split_text.index(word)+1] == split_phrase [1]:
                     return True
         
         return False
@@ -117,7 +117,10 @@ class PhraseTrigger(Trigger):
 # Problem 3
 class TitleTrigger(PhraseTrigger):
     def __init__(self, title):
-        self.title = title
+        self.phrase = title
+
+    def evaluate(self, story):
+        return self.is_phrase_in(story.get_title())
 
 # Problem 4
 # TODO: DescriptionTrigger
