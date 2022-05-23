@@ -133,6 +133,8 @@ class DescriptionTrigger(PhraseTrigger):
 # Constructor:
 #        Input: Time has to be in EST and in the format of "%d %b %Y %H:%M:%S".
 #        Convert time from string to a datetime before saving it as an attribute.
+class TimeTrigger(Trigger):
+    pass
 
 # Problem 6
 # TODO: BeforeTrigger and AfterTrigger
