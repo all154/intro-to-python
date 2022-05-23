@@ -148,6 +148,8 @@ class AfterTrigger(TimeTrigger):
 
 # Problem 7
 # TODO: NotTrigger
+class NotTrigger(Trigger):
+    pass
 
 # Problem 8
 class AndTrigger(Trigger):
