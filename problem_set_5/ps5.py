@@ -100,19 +100,15 @@ class PhraseTrigger(Trigger):
 
     def is_phrase_in(self, text):
         lowercase_text = text.lower()
+        lowercase_trigger_phrase = self.phrase.lower()
 
         for char in string.punctuation:
-            replaced_text = lowercase_text.replace(char, '')
+            lowercase_text = lowercase_text.replace(char , " ")
         
-        split_text = replaced_text.split(" ")
-        split_phrase = self.phrase.lower().split(" ")
-
-        for word in split_text:
-            if word == split_phrase[0]:
-                if split_text[split_text.index(word)+1] == split_phrase [1]:
-                    return True
+        joined_text = " ".join(lowercase_text.split())
+        joined_text2 = " " + joined_text + " "
         
-        return False
+        return joined_text2.__contains__(" " + lowercase_trigger_phrase + " ")
 
 # Problem 3
 class TitleTrigger(PhraseTrigger):
