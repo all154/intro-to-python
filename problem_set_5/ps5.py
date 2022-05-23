@@ -120,7 +120,11 @@ class TitleTrigger(PhraseTrigger):
 
 # Problem 4
 class DescriptionTrigger(PhraseTrigger):
-    pass
+    def __init__(self, description_trigger):
+        self.phrase = description_trigger
+
+    def evaluate(self, story):
+        return self.is_phrase_in(story.get_description())
 
 # TIME TRIGGERS
 
