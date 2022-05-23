@@ -138,7 +138,8 @@ class TimeTrigger(Trigger):
 
 # Problem 6
 # TODO: BeforeTrigger and AfterTrigger
-
+class BeforeTrigger(TimeTrigger):
+    pass
 
 # COMPOSITE TRIGGERS
 
