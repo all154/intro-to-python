@@ -144,7 +144,8 @@ class DescriptionTrigger(PhraseTrigger):
 # TODO: NotTrigger
 
 # Problem 8
-# TODO: AndTrigger
+class AndTrigger(Trigger):
+    pass
 
 # Problem 9
 # TODO: OrTrigger
