@@ -141,6 +141,9 @@ class TimeTrigger(Trigger):
 class BeforeTrigger(TimeTrigger):
     pass
 
+class AfterTrigger(TimeTrigger):
+    pass
+
 # COMPOSITE TRIGGERS
 
 # Problem 7
