@@ -129,7 +129,6 @@ class DescriptionTrigger(PhraseTrigger):
 # TIME TRIGGERS
 
 # Problem 5
-# TODO: TimeTrigger
 # Constructor:
 #        Input: Time has to be in EST and in the format of "%d %b %Y %H:%M:%S".
 #        Convert time from string to a datetime before saving it as an attribute.
@@ -164,7 +163,11 @@ class AfterTrigger(TimeTrigger):
 # Problem 7
 # TODO: NotTrigger
 class NotTrigger(Trigger):
-    pass
+    def __init__(self, trigger):
+        self.trigger = trigger
+    
+    def evaluate(self, story):
+        return not self.trigger.evaluate(story)
 
 # Problem 8
 class AndTrigger(Trigger):
