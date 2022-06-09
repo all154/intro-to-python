@@ -93,7 +93,6 @@ class Trigger(object):
 # PHRASE TRIGGERS
 
 # Problem 2
-# TODO: PhraseTrigger
 class PhraseTrigger(Trigger):
     def __init__(self, phrase):
         self.phrase = phrase
